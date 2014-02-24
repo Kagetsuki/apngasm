@@ -338,4 +338,76 @@ namespace apngasm {
     return result;
   }
 
+  // for Ruby.
+  std::vector<unsigned char>& APNGFrame::pixels(const std::vector<unsigned char>& setPixels)
+  {
+    // Set.
+    if(!setPixels.empty())
+    {
+      const int size = setPixels.size();
+      if(_pixels != NULL) delete[] _pixels;
+      _pixels = new unsigned char[size];
+      memcpy(_pixels, setPixels.data(), size);
+    }
+
+    // Get.
+    const int size = _width * _height * 3;
+    _tmpPixels.resize(size);
+    memcpy(_tmpPixels.data(), _pixels, size);
+
+    return _tmpPixels;
+  }
+
+  std::vector<rgb>& APNGFrame::palette(const std::vector<rgb>& setPalette)
+  {
+    const int oneSize = sizeof(_palette[0]);
+
+    // Set.
+    if(!setPalette.empty())
+    {
+      _paletteSize = std::min(setPalette.size(), sizeof(_palette) / oneSize);
+      memcpy(_palette, setPalette.data(), _paletteSize * oneSize);
+    }
+
+    // Get.
+    _tmpPalette.resize(_paletteSize);
+    memcpy(_tmpPalette.data(), _palette, _paletteSize * oneSize);
+
+    return _tmpPalette;
+  }
+
+  std::vector<unsigned char>& APNGFrame::transparency(const std::vector<unsigned char>& setTransparency)
+  {
+    // Set.
+    if(!_tmpTransparency.empty())
+    {
+      _transparencySize = std::min(setTransparency.size(), sizeof(_transparency));
+      memcpy(_transparency, setTransparency.data(), _transparencySize);
+    }
+
+    // Get.
+    _tmpTransparency.resize(_transparencySize);
+    memcpy(_tmpTransparency.data(), _transparency, _transparencySize);
+
+    return _tmpTransparency;
+  }
+
+  std::vector<unsigned char*>& APNGFrame::rows(const std::vector<unsigned char*>& setRows)
+  {
+    // Set.
+    if(!_tmpRows.empty())
+    {
+      _height = setRows.size();
+      if(_rows != NULL) delete[] _rows;
+      _rows = new unsigned char*[_height];
+      memcpy(_rows, setRows.data(), _height);
+    }
+
+    // Get.
+    _tmpRows.resize(_height);
+    memcpy(_tmpRows.data(), _rows, _height);
+
+    return _tmpRows;
+  }
+
 } // namespace apngasm

@@ -2,6 +2,7 @@
 #define _APNGFRAME_H_
 
 #include <string>
+#include <vector>
 
 namespace apngasm {
 
@@ -67,7 +68,19 @@ namespace apngasm {
     // Return true if save succeeded.
     bool save(const std::string& outPath) const;
 
+    // for Ruby.
+    std::vector<unsigned char>& pixels(const std::vector<unsigned char>& setPixels = std::vector<unsigned char>());
+    std::vector<rgb>& palette(const std::vector<rgb>& setPalette = std::vector<rgb>());
+    std::vector<unsigned char>& transparency(const std::vector<unsigned char>& setTransparency = std::vector<unsigned char>());
+    std::vector<unsigned char*>& rows(const std::vector<unsigned char*>& setRows = std::vector<unsigned char*>());
+
   private:
+    // for Ruby.
+    std::vector<unsigned char> _tmpPixels;
+    std::vector<rgb> _tmpPalette;
+    std::vector<unsigned char> _tmpTransparency;
+    std::vector<unsigned char*> _tmpRows;
+
   };  // class APNGFrame
 
 } // namespace apngasm
