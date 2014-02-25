@@ -69,10 +69,10 @@ namespace apngasm {
     bool save(const std::string& outPath) const;
 
     // for Ruby.
-    std::vector<unsigned char>& pixels(const std::vector<unsigned char>& setPixels = std::vector<unsigned char>());
-    std::vector<rgb>& palette(const std::vector<rgb>& setPalette = std::vector<rgb>());
-    std::vector<unsigned char>& transparency(const std::vector<unsigned char>& setTransparency = std::vector<unsigned char>());
-    std::vector<unsigned char*>& rows(const std::vector<unsigned char*>& setRows = std::vector<unsigned char*>());
+    std::vector<unsigned char>& pixelsForRuby(const std::vector<unsigned char>& setPixels = std::vector<unsigned char>());
+    std::vector<rgb>& paletteForRuby(const std::vector<rgb>& setPalette = std::vector<rgb>());
+    std::vector<unsigned char>& transparencyForRuby(const std::vector<unsigned char>& setTransparency = std::vector<unsigned char>());
+    std::vector<unsigned char*>& rowsForRuby(const std::vector<unsigned char*>& setRows = std::vector<unsigned char*>());
 
   private:
     // for Ruby.

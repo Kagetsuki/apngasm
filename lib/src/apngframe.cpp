@@ -339,7 +339,7 @@ namespace apngasm {
   }
 
   // for Ruby.
-  std::vector<unsigned char>& APNGFrame::pixels(const std::vector<unsigned char>& setPixels)
+  std::vector<unsigned char>& APNGFrame::pixelsForRuby(const std::vector<unsigned char>& setPixels)
   {
     // Set.
     if(!setPixels.empty())
@@ -358,7 +358,7 @@ namespace apngasm {
     return _tmpPixels;
   }
 
-  std::vector<rgb>& APNGFrame::palette(const std::vector<rgb>& setPalette)
+  std::vector<rgb>& APNGFrame::paletteForRuby(const std::vector<rgb>& setPalette)
   {
     const int oneSize = sizeof(_palette[0]);
 
@@ -376,7 +376,7 @@ namespace apngasm {
     return _tmpPalette;
   }
 
-  std::vector<unsigned char>& APNGFrame::transparency(const std::vector<unsigned char>& setTransparency)
+  std::vector<unsigned char>& APNGFrame::transparencyForRuby(const std::vector<unsigned char>& setTransparency)
   {
     // Set.
     if(!_tmpTransparency.empty())
@@ -392,7 +392,7 @@ namespace apngasm {
     return _tmpTransparency;
   }
 
-  std::vector<unsigned char*>& APNGFrame::rows(const std::vector<unsigned char*>& setRows)
+  std::vector<unsigned char*>& APNGFrame::rowsForRuby(const std::vector<unsigned char*>& setRows)
   {
     // Set.
     if(!_tmpRows.empty())
